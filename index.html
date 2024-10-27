@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Data Penduduk</title>
+    <style>
+        body {
+            background-color: lightcyan; /* Light blue background */
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+            color: #f459b3;
+        }
+
+        form {
+            background-color: #ffffff; /* White background for the form */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            margin: auto;
+        }
+
+        label {
+            font-weight: bold;
+            color: #003366;
+        }
+
+        input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #ffafd3;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #f459b3;
+        }
+
+        #informasi {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h2>Form Input Data Penduduk</h2>
+    <form action="input.php" method="post" onsubmit="return validateForm()">
+        <label for="kecamatan">Kecamatan:</label><br>
+        <input type="text" id="kecamatan" name="kecamatan" required><br>
+
+        <label for="longitude">Longitude:</label><br>
+        <input type="text" id="longitude" name="longitude" required><br>
+
+        <label for="latitude">Latitude:</label><br>
+        <input type="text" id="latitude" name="latitude" required><br>
+
+        <label for="luas">Luas:</label><br>
+        <input type="text" id="luas" name="luas" required><br>
+
+        <label for="Jumlah_Penduduk">Jumlah Penduduk:</label><br>
+        <input type="text" id="Jumlah_Penduduk" name="Jumlah_Penduduk" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p id="informasi"></p>
+
+    <script>
+        function validateForm() {
+            let luas = document.getElementById("luas").value;
+            let longitude = document.getElementById("longitude").value;
+            let latitude = document.getElementById("latitude").value;
+            let informasi = "";
+
+            if (isNaN(luas) || luas < 1) {
+                informasi = "Luas harus berupa angka positif.";
+                event.preventDefault();
+            }
+            if (isNaN(longitude) || isNaN(latitude)) {
+                informasi = "Koordinat harus berupa angka.";
+                event.preventDefault();
+            }
+
+            document.getElementById("informasi").innerHTML = informasi;
+        }
+    </script>
+</body>
+
+</html>
